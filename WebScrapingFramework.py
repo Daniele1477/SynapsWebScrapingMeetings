@@ -107,17 +107,23 @@ def extract_coordinates_from_url(url: str) -> tuple[float, float]:
     """helper function to extract coordinates from url"""
     coordinates = url.split('/@')[-1].split('/')[0]
     return float(coordinates.split(',')[0]), float(coordinates.split(',')[1])
+#so here is basically splitting the url to get coordinates extract_coordinates_from_url('https://maps.example.com/place/Some+Location/@40.7128,-74.0060,15z/data=!3m1!4b1')
+#(40.7128, -74.006)
+#I must say though that coordinates in the url for some reason always differ from the real one, it's probably the view the browser would have portrayed if you gave him those coordinates 
+
+
+
 
 # NOTE: The custom get_unique_filename function is removed
 # to ensure the file path is predictable for loading/overwriting.
 
 # --- Main Function ---
-
+#this has nothing to do with classes, it's just a variable you are passing and applying methods on 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-s", "--search", type=str)
+    parser = argparse.ArgumentParser() #this create a variable with the argparse method ArgumentParser() this way you can store values in it 
+    parser.add_argument("-s", "--search", type=str) #adding options to parse values 
     parser.add_argument("-t", "--total", type=int)
-    args = parser.parse_args()
+    args = parser.parse_args()        #it's taking the search information from the parser (total, search) (parse the command-line arguments and store them in the 'args' variable)
     
     if args.search:
         search_list = [args.search]
@@ -136,11 +142,11 @@ def main():
                 search_list = file.readlines()
         if len(search_list) == 0:
             print('Error occurred: You must either pass the -s search argument, or add searches to input.txt')
-            sys.exit()
+            sys.exit() #this will stop the program right there with no further lines of code running 
+#with is a context manager that ensures resources (like files) are properly cleaned up after you’re done, which prevents errors or memory leaks
     
     with sync_playwright() as p:
-        # browser = p.chromium.launch(headless=False)
-        # Note: Set headless=True for faster, background scraping
+        #If headless=True, the browser runs in the background (faster for scraping)
         browser = p.chromium.launch(headless=False)
         page = browser.new_page(locale="en-GB")
         page.goto("https://www.google.com/maps", timeout=20000)
