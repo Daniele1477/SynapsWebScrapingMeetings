@@ -158,7 +158,7 @@ def main():
             base_filename = search_for.replace(' ', '_')         # 'trois et quatre' becomes trois_et_quatre
 
             # --- NEW: Load existing data and initialize BusinessList ---
-            existing_records = load_existing_data(base_filename, BusinessList.save_at) #that save_at is the jointure of 'GMapsData, today'
+            existing_records = load_existing_data(base_filename, BusinessList.save_at) #that save_at is the jointure of 'GMapsData, today', it is an attribute of the BusinessList
             initial_count = len(existing_records)
             business_list = BusinessList(business_list=existing_records)
 
@@ -167,13 +167,12 @@ def main():
             page.wait_for_timeout(3000)
             page.keyboard.press("Enter")
             page.wait_for_timeout(5000)
-
             # scrolling
-            page.hover('//a[contains(@href, "https://www.google.com/maps/place")]')
+            page.hover('//a[contains(@href, "https://www.google.com/maps/place")]') #move the mouse cursor over a web element to trigger its hover state (like revealing a dropdown menu or changing its color) without clicking it.
 
             previously_counted = 0
             while True:
-                page.mouse.wheel(0, 10000)
+                page.mouse.wheel(0, 10000) #literally scrolling the mouse wheel
                 page.wait_for_timeout(3000)
 
                 listings_count = page.locator(
@@ -183,7 +182,7 @@ def main():
                 if listings_count >= total:
                     listings = page.locator(
                         '//a[contains(@href, "https://www.google.com/maps/place")]'
-                    ).all()[:total]
+                    ).all()[:total] #Playwright method takes the locator and immediately collects a list of all matching elements currently visible in the Document Object Model (DOM)
                     listings = [listing.locator("xpath=..") for listing in listings]
                     print(f"Total Scraped: {len(listings)}")
                     break
@@ -201,7 +200,7 @@ def main():
             # NEW: Check if listings is defined and non-empty
             if 'listings' not in locals() or not listings:
                 print(f"No listings found for {search_for}. Moving to next search.")
-                continue
+                continue #it basically skips a step of the loop when a condition is equal to the if clause and moves to the next one
 
             # scraping
             newly_added_count = 0
@@ -218,7 +217,7 @@ def main():
                     reviews_average_xpath = '//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]'
                     business = Business()
                    
-                    if name_value := page.locator(name_attribute).inner_text():
+                    if name_value := page.locator(name_attribute).inner_text():       #this is the walrus operator, which at the same time sets the variable and returns the condition check to the if loop so that it can verify it and continue 
                         business.name = name_value.strip()
                     else:
                         business.name = None
@@ -309,3 +308,5 @@ if __name__ == "__main__":
         main()
     except Exception as e:
         print(f'Failed err: {e}')
+        
+        
