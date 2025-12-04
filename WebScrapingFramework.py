@@ -150,15 +150,15 @@ def main():
         page = browser.new_page(locale="en-GB")
         page.goto("https://www.google.com/maps", timeout=20000)
         
-        for search_for_index, search_for in enumerate(search_list):
+        for search_for_index, search_for in enumerate(search_list):    #this gets you access to the index of each element in a list for i, value in enumerate(my_list):
             search_for = search_for.strip() # Clean search term
-            print(f"-----\n{search_for_index} - {search_for}")
+            print(f"-----\n{search_for_index} - {search_for}")    #the n here is used to go to the next line 
 
             # Prepare the base filename from the search term
-            base_filename = search_for.replace(' ', '_')
+            base_filename = search_for.replace(' ', '_')         # 'trois et quatre' becomes trois_et_quatre
 
             # --- NEW: Load existing data and initialize BusinessList ---
-            existing_records = load_existing_data(base_filename, BusinessList.save_at)
+            existing_records = load_existing_data(base_filename, BusinessList.save_at) #that save_at is the jointure of 'GMapsData, today'
             initial_count = len(existing_records)
             business_list = BusinessList(business_list=existing_records)
 
