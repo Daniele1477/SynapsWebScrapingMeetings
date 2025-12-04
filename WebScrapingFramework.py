@@ -101,7 +101,6 @@ class BusinessList:
             (asdict(business) for business in self.business_list), sep="_"
         )
 
-    # Note: save_to_excel and save_to_csv are no longer needed here as they are done in main()
 
 def extract_coordinates_from_url(url: str) -> tuple[float, float]:
     """helper function to extract coordinates from url"""

@@ -7,6 +7,6 @@ def main():
         # Note: Set headless=True for faster, background scraping
         browser = p.chromium.launch(headless=False)
         page = browser.new_page(locale="en-GB")
-        page.goto("https://www.google.com/maps", timeout=20000)
+        page.goto("https://www.synaps.network/en", timeout=20000)
         
 main()
