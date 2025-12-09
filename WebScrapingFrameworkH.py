@@ -164,7 +164,7 @@ def main():
             business_list = BusinessList(business_list=existing_records)
 
             # Perform the search
-            page.locator('//input[@id="searchboxinput"]').fill(search_for)
+            page.locator('//input[@id="Bank"]').fill(search_for)
             page.wait_for_timeout(3000)
             page.keyboard.press("Enter")
             page.wait_for_timeout(5000)
