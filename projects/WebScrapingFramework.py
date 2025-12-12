@@ -1,4 +1,7 @@
-'''modify the program so that it collects the location by double clicking on the map'''
+'''Web Scraping Framework
+
+'''
+
 '''
 
 import datetime          #for date stamped folders  
@@ -300,13 +303,17 @@ def main():
 
         browser.close()
 
+
+
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
         print(f'Failed err: {e}')
+        
 '''
-'''
+
+
 
 import datetime          #for date stamped folders  
 from playwright.sync_api import sync_playwright     #automatically controls the browser 
@@ -362,7 +369,7 @@ class Business:
     reviews_average: float = None
     latitude: float = None
     longitude: float = None
-    
+    plus_code: str = None 
     def __hash__(self):
         """Make Business hashable for duplicate detection."""
         hash_fields = [self.name]
@@ -372,8 +379,9 @@ class Business:
             hash_fields.append(f"website:{self.website}")
         if self.phone_number:
             hash_fields.append(f"phone:{self.phone_number}")
+        if self.plus_code:
+            hash_fields.append(f"plus_code:{self.plus_code}")    
         return hash(tuple(hash_fields))
-
 @dataclass
 class BusinessList:
     """holds list of Business objects,
@@ -405,11 +413,12 @@ class BusinessList:
             (asdict(business) for business in self.business_list), sep="_"
         )
 
-
+#this part is quite useless now that we have a program to compute the exact location
+'''
 def extract_coordinates_from_url(url: str) -> tuple[float, float]:
     """helper function to extract coordinates from url"""
     coordinates = url.split('/@')[-1].split('/')[0]
-    return float(coordinates.split(',')[0]), float(coordinates.split(',')[1])
+    return float(coordinates.split(',')[0]), float(coordinates.split(',')[1])'''
 #so here is basically splitting the url to get coordinates extract_coordinates_from_url('https://maps.example.com/place/Some+Location/@40.7128,-74.0060,15z/data=!3m1!4b1')
 #(40.7128, -74.006)
 #I must say though that coordinates in the url for some reason always differ from the real one, it's probably the view the browser would have portrayed if you gave him those coordinates 
@@ -519,6 +528,7 @@ def main():
                     phone_number_xpath = '//button[contains(@data-item-id, "phone:tel:")]//div[contains(@class, "fontBodyMedium")]'
                     review_count_xpath = '//div[@jsaction="pane.reviewChart.moreReviews"]//span'
                     reviews_average_xpath = '//div[@jsaction="pane.reviewChart.moreReviews"]//div[@role="img"]'
+                    plus_code_xpath = '//button[@data-item-id="oloc"]//div[contains(@class, "fontBodyMedium")]'
                     business = Business()
                    
                     if name_value := page.locator(name_attribute).inner_text():       #this is the walrus operator, which at the same time sets the variable and returns the condition check to the if loop so that it can verify it and continue 
@@ -563,6 +573,11 @@ def main():
                             business.reviews_average = None
                     else:
                         business.reviews_average = None
+                        
+                    if page.locator(plus_code_xpath).count() > 0:
+                        business.plus_code = page.locator(plus_code_xpath).all()[0].inner_text()
+                    else:
+                        business.plus_code = None
                 
                     #business.category = search_for.split(' in ')[0].strip() if ' in ' in search_for else search_for
                     #category_xpath = '//button[contains(@aria-label, "Category") or contains(@jsaction, "pane.rating.category") or contains(@data-item-id, "category")]//div'
@@ -581,7 +596,7 @@ def main():
                              # Use None if no official category could be found
                              business.category = None
                     business.location = search_for.split(' in ')[-1].strip() if ' in ' in search_for else None
-                    business.latitude, business.longitude = extract_coordinates_from_url(page.url)
+                    #business.latitude, business.longitude = extract_coordinates_from_url(page.url)
 
                     # NEW: Add business and track if it was new
                     if business_list.add_business(business):
@@ -607,40 +622,12 @@ def main():
 
         browser.close()
 
+
+
 if __name__ == "__main__":
     try:
         main()
     except Exception as e:
         print(f'Failed err: {e}')
         
-        '''
-
-from playwright.sync_api import sync_playwright
-
-def right_click_element():
-    with sync_playwright() as p:
-        # Launch the Chromium browser
-        browser = p.chromium.launch(headless=False)
         
-        # Create a new page
-        page = browser.new_page()
-
-        # 1. Navigate to a test page (You would replace this with your target URL)
-        # Using a site with a known right-click context menu for demonstration
-        page.goto("https://plus.codes/map")
-        search_for = 'VGQ5+5P Beirut'
-        page.locator('//input[@id="search-input"]').fill(search_for)
-        page.keyboard.press("Enter")
-        page.click("div.expand.sprite-bg", timeout=5000)
-        coordinates_selector = "div.detail.latlng.clipboard.vertical-center"
-        coordinates_element = page.locator(coordinates_selector) # Finds the actual HTML element
-        raw_coordinates = coordinates_element.inner_text()
-#        target_element = page.locator('//h1[contains(@class, "DUwDvf")]')
-#        target_element.click(
-#           button="right"  # <-- The core of the right-click framework
-#        )
-        page.wait_for_timeout(6000)
-        print(f"Coordinates found: {raw_coordinates}")
-if __name__ == "__main__":
-    right_click_element()
-
