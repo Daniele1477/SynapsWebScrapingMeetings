@@ -7,3 +7,5 @@ MEETINGS AND FEEDBACKS:
 
 04/12/2025
 -D "Second meeting, more organised, quiet work and reflections, hopefully we'll be able to come up with an active coding project by the next meeting"
+
+comment 
