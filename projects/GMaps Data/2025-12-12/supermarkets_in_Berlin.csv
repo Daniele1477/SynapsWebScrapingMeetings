@@ -1,3 +1,2 @@
 name,address,domain,website,phone_number,category,location,reviews_count,reviews_average,latitude,longitude,plus_code
-EDEKA Moch Supermarket,"Grunerstraße 20, 10179 Berlin, Germany",edeka.de,https://www.edeka.de,+49 30 24045625,Supermarket,Berlin,1950,4.2,,,"GC97+XV Berlin, Germany"
-HIT Supermarkt,"Kantstraße 7, 10623 Berlin, Germany",hit.de,https://www.hit.de,+49 30 81850110,Supermarket,Berlin,9820,4.0,,,"G84J+GG Berlin, Germany"
+EDEKA Moch Supermarket,"Grunerstraße 20, 10179 Berlin, Germany",edeka.de,https://www.edeka.de,+49 30 24045625,Supermarket,Berlin,1950,4.2,52.519937,13.414687,"GC97+XV Berlin, Germany"
