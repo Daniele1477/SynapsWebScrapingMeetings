@@ -1,10 +1,10 @@
-### **Google Maps Scraper**<br/>
+# **Google Maps Scraper**<br/>
 
 A customizable working Google Maps scraper that builds up from what the community had already published and adds a few tweaks to make 
 it more suitable to research and maps visualizations. 
 
 
-# **After having installed the dependencies:** <br/>
+### **After having installed the dependencies:** <br/>
 pip install playwright <br/>
 pip install pandas <br/>
 playwright install chromium  <br/>
@@ -28,7 +28,7 @@ The data will be saved in the GMaps Data in folders that follow the 'dd-mm-yyyy'
 In order to get the location, a second program ('Location.py') decrypts the Plus Code scraped from Google Maps website. <br/>
 Plus Codes are simple, open-source digital addresses (like "87G8+F2") that provide a universal addressing system for any location, especially useful where traditional street names and numbers don't exist, allowing for precise location sharing for deliveries, services, and navigation, by converting latitude/longitude into short alphanumeric codes. <br/>
 
-# **To execute the program, run:** <br/>
+### **To execute the program, run:** <br/>
 python3 Location.py -f 'GMaps Data/2025-12-15/supermarkets_in_Milan.xlsx' <br/>
 Make sure to write the right file path <br/>
 
