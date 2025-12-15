@@ -3,7 +3,6 @@
 A customizable working Google Maps scraper that builds up from what the community had already published and adds a few tweaks to make 
 it more suitable to research and maps visualizations. 
 
-
 ### **After having installed the dependencies:** <br/>
 pip install playwright <br/>
 pip install pandas <br/>
@@ -11,7 +10,7 @@ playwright install chromium  <br/>
 
 The program it's either runnable by parsing the arguments within the terminal, where s stands for search and t is a limit to the maximum number of result <br/>
 ##Example:<br/>
-python3 main.py -s="coffee shops in Boston" -t=50  <br/>
+python3 WebScrapingFramework.py -s="coffee shops in Boston" -t=50  <br/>
 
 Or by adding one by line the queries to 'input.txt': <br/>
 pharmacies in Amman
