@@ -1,4 +1,4 @@
-Google Maps Scraper 
+###Google Maps Scraper 
 
 A customizable working Google Maps scraper that builds up from what the community had already published and adds a few tweaks to make 
 it more suitable to research and maps visualizations. 
