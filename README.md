@@ -13,18 +13,19 @@ playwright install chromium
 
 
 The program it's either runnable by parsing the arguments within the terminal, where s stands for search and t is a limit to the maximum number of result <br/>
-##Example:<br/>
+## Example:<br/>
 
 The program it's either runnable by parsing the arguments within the terminal, where s stands for search and t is a limit to the maximum number of result <br/>
-##Example:<br/>
+## Example:<br/>
 ```
 python3 WebScrapingFramework.py -s="coffee shops in Boston" -t=50 
 ```
 
 Or by adding one by line the queries to 'input.txt': <br/>
-pharmacies in Amman
+```
+Pharmacies in Amman 
 Hospital in Aqaba  
-
+```
 And then executing (with 't' of your choice): <br/>
 ```
 python3 WebScrapingFramework.py -t=100 
@@ -39,7 +40,9 @@ In order to get the location, a second program ('Location.py') decrypts the Plus
 Plus Codes are simple, open-source digital addresses (like "87G8+F2") that provide a universal addressing system for any location, especially useful where traditional street names and numbers don't exist, allowing for precise location sharing for deliveries, services, and navigation, by converting latitude/longitude into short alphanumeric codes. <br/>
 
 ### **To execute the program, run:** <br/>
-python3 Location.py -f 'GMaps Data/2025-12-15/supermarkets_in_Milan.xlsx' <br/>
+```
+python3 Location.py -f 'GMaps Data/2025-12-15/supermarkets_in_Milan.xlsx' 
+```
 Make sure to write the right file path <br/>
 
 ## **Plotting a map** <br/>
