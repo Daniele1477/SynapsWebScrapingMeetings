@@ -23,7 +23,8 @@ python3 WebScrapingFramework.py -t=100
 
 The data will be saved in the GMaps Data in folders that follow the 'dd-mm-yyyy' format 
 
-## Getting the location was an issue because the coordinates Google provides in the URL come from it placing the item in the centre of the map, hence they don't reflect the actual geo spatial coordinates
+## Getting the POI real coordinates <br/>
+**Getting the location was an issue because the coordinates Google provides in the URL come from it placing the item in the centre of the map, hence they don't reflect the actual geo spatial coordinates**
 
 In order to get the location, a second program ('Location.py') decrypts the Plus Code scraped from Google Maps website. <br/>
 Plus Codes are simple, open-source digital addresses (like "87G8+F2") that provide a universal addressing system for any location, especially useful where traditional street names and numbers don't exist, allowing for precise location sharing for deliveries, services, and navigation, by converting latitude/longitude into short alphanumeric codes. <br/>
