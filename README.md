@@ -14,9 +14,6 @@ playwright install chromium
 
 The program it's either runnable by parsing the arguments within the terminal, where s stands for search and t is a limit to the maximum number of result <br/>
 ## Example:<br/>
-
-The program it's either runnable by parsing the arguments within the terminal, where s stands for search and t is a limit to the maximum number of result <br/>
-## Example:<br/>
 ```
 python3 WebScrapingFramework.py -s="coffee shops in Boston" -t=50 
 ```
